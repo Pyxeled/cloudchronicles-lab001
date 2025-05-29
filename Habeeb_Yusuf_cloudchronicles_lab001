@@ -1,0 +1,196 @@
+{
+
+ "cells": [
+
+  {
+
+   "cell_type": "markdown",
+
+   "id": "0f1e0979",
+
+   "metadata": {},
+
+   "source": [
+
+    "# 🧠 cloudChronicles Lab #001: Disaster Recovery Detective\n",
+
+    "\n",
+
+    "**Lab Type:** Idea  \n",
+
+    "**Estimated Time:** 30–45 mins  \n",
+
+    "**Skill Level:** Beginner"
+
+   ]
+
+  },
+
+  {
+
+   "cell_type": "code",
+
+   "execution_count": null,
+
+   "id": "a97f86ab",
+
+   "metadata": {},
+
+   "outputs": [],
+
+   "source": [
+
+    "# Let's begin by printing your name to personalize the notebook\n",
+
+    "your_name = \"Habeeb Yusuf\"\n",
+
+    "print(f\"Welcome to the lab, {your_name}!\")"
+
+   ]
+
+  },
+
+  {
+
+   "cell_type": "markdown",
+
+   "id": "0f94d019",
+
+   "metadata": {},
+
+   "source": [
+
+    "## 🔍 STAR Method Lab Prompt\n",
+
+    "\n",
+
+    "**Situation:**  \n",
+
+    "As a Cloud Architect for QuickCart a small but growing e-commerce startup. QuickCart's entire application (web front-end, order processing, and product database) is hosted in Google Cloud's `us-central1` region. The application uses:\n",
+
+    "*   Google Compute Engine (GCE) instances for the web servers and application logic.\n",
+
+    "*   Cloud SQL for PostgreSQL for the product catalog and customer orders.\n",
+
+    "*   Cloud Storage for product images.\n",
+
+    "A critical regional outage has just been reported by Google Cloud for `us-central1`, making all QuickCart services inaccessible. The CEO is asking for an immediate plan to get the store back online.\n",
+
+    "\n",
+
+    "**Task:**  \n",
+
+    "The task is to outline a basic disaster recovery (DR) plan using the STAR method. This plan should define how QuickCart can failover its critical services to a designated backup region (`us-east1`) using appropriate Google Cloud tools. The goal is to restore service with minimal data loss and downtime, considering QuickCart's current (simplified) infrastructure.\n",
+
+    "\n",
+
+    "**Action:**  \n",
+
+    "To complete this task, this will be needed:\n",
+
+    "1.  **Identify Critical Services:** Listing the core components of QuickCart that need to be recovered for instance, database, web servers, image storage.\n",
+
+    "2.  **Choose DR Strategies:** For each critical service, select a suitable Google Cloud DR strategy/tool.\n",
+
+    "    *Considering Cloud SQL's replication features.\n",
+
+    "    *Think about Cloud Storage's regional/multi-regional capabilities.\n",
+
+    "    *How can you quickly deploy GCE instances in a new region? (Think Instance Templates, Managed Instance Groups).\n",
+
+    "    *How will users reach the application in the new region? (Thinking Load Balancing).\n",
+
+    "    *How would we know to trigger the DR plan?\n",
+
+    "3.  **Outline Failover Steps:** Briefly describing the sequence of actions to activate the DR site for example, promoting database replica, deploy compute, update DNS/Load Balancer.\n",
+
+    "4.  **Define Key Metrics:** Thinking about what Recovery Time Objective (RTO) and Recovery Point Objective (RPO) would mean for QuickCart.\n",
+
+    "\n",
+
+    "**Expected Result:**  \n",
+
+    "A documented disaster recovery outline using the STAR method format provided below. This plan should clearly state the primary and backup regions, failover triggers, redundancy services chosen for QuickCart's components, and a conceptual backup/replication strategy."
+
+   ]
+
+  },
+
+  {
+
+   "cell_type": "markdown",
+
+   "id": "397b221d",
+
+   "metadata": {},
+
+   "source": [
+
+    "## ✍️ Your Assignment\n",
+
+    "\n",
+
+    "_Use this section to complete your deliverable:_\n",
+
+    "\n",
+
+    "```markdown\n",
+
+    "\n",
+
+    "- **Primary Region**: us-central1\n",
+
+    "- **DR (Backup) Region**: us-east1\n",
+
+    "- **Failover Trigger(s)**: Google Cloud status/ alerts\n",
+
+    "- **Key Service Recovery Strategies & Steps**:\n",
+
+    "    - **Database Cloud SQL for QuickCart**:\n",
+
+    "        - *DR Strategy*: Cross-region replica in DR region\n",
+
+    "        - *Failover Step*: Promote replica to primary, update app config\n",
+
+    "    - **Application Servers GCE for QuickCart Web/App Logic**:\n",
+
+    "        - *DR Strategy*: Instance templates and MIG definition in DR region\n",
+
+    "        - *Failover Step*: Scale up/deploy MIG, point to new DB\n",
+
+    "    - **File Storage Cloud Storage for QuickCart Product Images**:\n",
+
+    "        - *DR Strategy*: Multi-region or Dual-region bucket\n",
+
+    "        - *Failover Step*: Usually automatic access from DR region apps\n",
+
+    "    - **Traffic Management Global Load Balancer for QuickCart Storefront**:\n",
+
+    "        - *DR Strategy*: Global Load Balancer configured\n",
+
+    "        - *Failover Step*: Update backend service to point to DR region MIG\n",
+
+    "- **Target RTO (Time to Recover)**: Goal, < 1 hour\n",
+
+    "- **Target RPO (Data Loss Tolerance)**: Goal, < 5 minutes\n",
+
+    "```"
+
+   ]
+
+  }
+
+ ],
+
+ "metadata": {},
+
+ "nbformat": 4,
+
+ "nbformat_minor": 5
+
+}
+
+
+
+
+Show thinking
